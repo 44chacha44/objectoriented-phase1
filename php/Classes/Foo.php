@@ -30,5 +30,22 @@ class Author {
 	 * authors username
 	 */
 	private $authorUsername;
+
+	/**
+	 *accessor method for author id
+	 *
+	 * #return int value of author id
+	 */
+	public function getAuthorId() {
+		return($this->authorId);
+	}
+
+	/**
+	 * mutator method for author id
+	 *
+	 * @param int $newAuthorId new value of author id
+	 * @throws UnexpectedValueException if $newAuthorId is not an integer
+	 */
+	public function setAuthorId($newAuthorId)
 }
 ?>
