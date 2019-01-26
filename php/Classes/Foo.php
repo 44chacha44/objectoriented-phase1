@@ -11,7 +11,7 @@ class Author {
 	 */
 	private $authorId;
 	/**
-	 * email for the Author; this is a foreign key
+	 * email for the Author; this is an index
 	 */
 	private $authorEmail;
 	/**
@@ -36,7 +36,7 @@ class Author {
 	 *
 	 * #return int value of author id
 	 */
-	public function getAuthorId() {
+	public function getAuthorId(): Uuid {
 		return($this->authorId);
 	}
 
@@ -46,6 +46,14 @@ class Author {
 	 * @param int $newAuthorId new value of author id
 	 * @throws UnexpectedValueException if $newAuthorId is not an integer
 	 */
-	public function setAuthorId($newAuthorId)
+	public function setAuthorId( $newAuthorId) : {
+	//verify the author id is valid
+		$newAuthorId = filter_var($newAuthorId, FILTER_VALIDATE_INT);
+	if ($newAuthorId === false){
+		throw(new UnexpectedValueException("profile id is not a valid integer"));
+		}
+	//convert and store the author id
+		$this->authorId = intval($newAuthorId);
+	}
 }
 ?>
