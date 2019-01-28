@@ -180,4 +180,31 @@ class Author {
 		}
 		$this->authorHash = $newAuthorHash;
 	}
+	/**
+	 * Accessor method for Author Username
+	 *
+	 * @return author username
+	 */
+	public function getAuthorUsername(): string {
+		return ($this->authorUsername);
+	}
+	/**
+	 * Mutator method for Author Username
+	 *
+	 * @param string $newAuthorUsername new username
+	 * @throws \InvalidArgumentException if $newAuthorUsername is not a string or insecure
+	 * @throws \RangeException if @newAuthorUsername is > 32 characters
+	 * @throws \TypeErrorif $newAuthorUsername is not a string
+	 **/
+	public function setAuthorUsername(string $newAuthorUsername) : void {
+		$newAuthorUsername = trim($newAuthorUsername);
+		$newAuthorUsername = filter_var($newAuthorUsername, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newAuthorUsername) === true) {
+			throw(new \InvalidArgumentException("username is empty or insecure"));
+		}
+		if(strlen($newAuthorUsername) > 32) {
+			throw(new \RangeException("username is too long"));
+			$this->authorUsername = $newAuthorUsername;
+		}
+	}
 }
