@@ -1,11 +1,16 @@
 <?php
+namespace Edu\Cnm\DataDesign;
+require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
+use Ramsey\Uuid\Uuid;
 /**This is the Author Class for Medium
  *
  * I am using this for my Object Oriented Phase 1 learning to help me understand object oriented thinking.
  *
  * Author: Nehomah Mora <nehomahm@gmail.com>
  * */
-class Author {
+class Author implements \JsonSerializable {
+	use ValidateUuid;
+	use ValidateDate;
 	/**
 	 * id for this Author; this is the primary key
 	 */
@@ -206,5 +211,16 @@ class Author {
 			throw(new \RangeException("username is too long"));
 			$this->authorUsername = $newAuthorUsername;
 		}
+	}
+	/**formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 * */
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+		$fields["authorId"] = $this->authorId->toString();
+		unset($fields["authorHash"]);
+		unset($fields["authorUsername"]);
+		return ($fields);
 	}
 }
