@@ -149,4 +149,35 @@ class Author {
 		}
 		$this->authorAvatarUrl = $newAuthorAvatarUrl;
 	}
+	/**Accessor methos for Author Hash
+	 *
+	 * returns author hash
+	 * */
+	/**
+	 * @return mixed
+	 */
+	public function getAuthorHash() : string{
+		return $this->authorHash;
+	}
+	/**Mutator method for Author Hash
+	 *
+	 * @param string $newAuthorHash
+	 * @throws \InvalidArgumentException if the hash is not secure
+	 * @throws \RangeException if the hash is not 128 characters
+	 * @throws \TypeError if the hash is not a string
+	 * */
+	public function setAuthorHash(string $newAuthorHash): void {
+		$newAuthorHash = trim($newAuthorHash);
+		$newAuthorHash = strtolower($newAuthorHash);
+		if(empty($newAuthorHash) === true) {
+			throw(new \InvalidArgumentException("author hash is empty or insecure"));
+		}
+		if(!ctype_xdigit($newAuthorHash)) {
+			throw(new \InvalidArgumentException("author has is empty or insecure"));
+		}
+		if(strlen($newAuthorHash) !== 128) {
+				throw(new \RangeException("author hash must be 128 characters"));
+		}
+		$this->authorHash = $newAuthorHash;
+	}
 }
