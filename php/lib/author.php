@@ -11,7 +11,7 @@ require_once(dirname(__DIR__, 1) . "/Classes/Author.php");
 
 use Ramsey\Uuid\Uuid;
 
-$newAuthorId = newAuthorId("6b3eadae-c9c3-4f69-a89c-7501ccfa6d65", "hehehehehehehehehehehehehehehehe",
+$newAuthorId = new Author("6b3eadae-c9c3-4f69-a89c-7501ccfa6d65", "hehehehehehehehehehehehehehehe",
 "www.avatarwebsite.com", "nehomahm@gmail.com","nanananananananananananananananananananananananananananananananananananananananananananananananan",
 "Brilliant Writer");
 var_dump($newAuthorId);
